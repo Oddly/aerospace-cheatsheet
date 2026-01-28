@@ -1,0 +1,35 @@
+NAVIGATION
+  alt + h/j/k/l           Focus window left/down/up/right
+  alt + 1-9               Switch to workspace
+  alt + tab               Back and forth between workspaces
+  alt + shift + tab       Move workspace to next monitor
+
+MOVING WINDOWS
+  alt + shift + h/j/k/l   Move window in direction
+  alt + shift + 1-9       Move window to workspace
+
+RESIZING
+  alt + minus             Decrease size
+  alt + equal             Increase size
+  alt + b                 Balance all windows
+
+LAYOUTS
+  alt + /                 Toggle horizontal/vertical tiles
+  alt + ,                 Toggle accordion layout
+  alt + f                 Toggle fullscreen
+
+APPS
+  alt + t                 Terminal (workspace T)
+  alt + b                 Browser (workspace B)
+  alt + c                 Communication (workspace C)
+  alt + shift + b         Pull/push browser to current
+
+SERVICE MODE (alt + shift + ;)
+  r                       Flatten workspace tree
+  f                       Toggle floating/tiling
+  esc                     Exit service mode
+
+TIPS
+  • Edit ~/.config/aerospace/cheatsheet.txt to customize
+  • Run 'aerospace list-apps' to find app IDs
+  • Run 'aerospace list-tree' to debug layout
