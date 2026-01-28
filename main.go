@@ -372,7 +372,7 @@ func main() {
 		numColumns: cols,
 	}
 
-	myApp.fyneApp = app.NewWithID("dev.chiark.aerospace-cheatsheet")
+	myApp.fyneApp = app.NewWithID("io.github.oddly.aerospace-cheatsheet")
 	myApp.fyneApp.Settings().SetTheme(&overlayTheme{})
 
 	myApp.window = myApp.fyneApp.NewWindow(appTitle)
