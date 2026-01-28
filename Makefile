@@ -2,7 +2,7 @@ APP_NAME := cheatsheet
 APP_ID := io.github.oddly.aerospace-cheatsheet
 INSTALL_DIR := $(HOME)/.config/aerospace/bin
 
-.PHONY: build build-darwin-arm64 build-darwin-amd64 build-linux-amd64 all clean install package-darwin package-linux
+.PHONY: build build-darwin-arm64 build-darwin-amd64 build-linux-amd64 all clean install package install-app
 
 build:
 	go build -o $(APP_NAME) .
@@ -27,20 +27,18 @@ install: build
 	cp $(APP_NAME) $(INSTALL_DIR)/$(APP_NAME)
 	@echo "Installed to $(INSTALL_DIR)/$(APP_NAME)"
 
-# Create proper macOS .app bundle with correct bundle ID
+# Create proper app bundle with correct bundle ID (builds for current OS)
 # Requires: go install fyne.io/fyne/v2/cmd/fyne@latest
-package-darwin:
-	fyne package --os darwin --name "Aerospace Cheatsheet" --appID $(APP_ID)
+package:
+	fyne package --name "Aerospace Cheatsheet" --appID $(APP_ID)
 
-# Create Linux package
-package-linux:
-	fyne package --os linux --name "Aerospace Cheatsheet" --appID $(APP_ID)
-
-# Install macOS app to /Applications
-install-darwin: package-darwin
+# Install app (macOS: /Applications, Linux: creates .tar.xz)
+install-app: package
+ifeq ($(shell uname),Darwin)
 	rm -rf "/Applications/Aerospace Cheatsheet.app"
 	cp -r "Aerospace Cheatsheet.app" /Applications/
 	@echo "Installed to /Applications/Aerospace Cheatsheet.app"
+endif
 
 # Cross-compilation using fyne-cross (Docker-based, recommended for cross-platform builds)
 # Install: go install github.com/fyne-io/fyne-cross@latest
