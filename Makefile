@@ -28,9 +28,9 @@ install: build
 	@echo "Installed to $(INSTALL_DIR)/$(APP_NAME)"
 
 # Create proper app bundle with correct bundle ID (builds for current OS)
-# Requires: go install fyne.io/fyne/v2/cmd/fyne@latest
+# Requires: go install fyne.io/tools/cmd/fyne@latest
 package:
-	fyne package --name "Aerospace Cheatsheet" --appID $(APP_ID)
+	fyne package --name "Aerospace Cheatsheet" --app-id $(APP_ID)
 
 # Install app (macOS: /Applications, Linux: creates .tar.xz)
 install-app: package
@@ -43,12 +43,12 @@ endif
 # Cross-compilation using fyne-cross (Docker-based, recommended for cross-platform builds)
 # Install: go install github.com/fyne-io/fyne-cross@latest
 cross-darwin-arm64:
-	fyne-cross darwin --arch arm64 --app-id $(APP_ID) --output $(APP_NAME)
+	fyne-cross darwin -arch arm64 -app-id $(APP_ID) -output $(APP_NAME)
 
 cross-darwin-amd64:
-	fyne-cross darwin --arch amd64 --app-id $(APP_ID) --output $(APP_NAME)
+	fyne-cross darwin -arch amd64 -app-id $(APP_ID) -output $(APP_NAME)
 
 cross-linux-amd64:
-	fyne-cross linux --arch amd64 --app-id $(APP_ID) --output $(APP_NAME)
+	fyne-cross linux -arch amd64 -app-id $(APP_ID) -output $(APP_NAME)
 
 cross-all: cross-darwin-arm64 cross-darwin-amd64 cross-linux-amd64
